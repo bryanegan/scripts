@@ -46,10 +46,10 @@ def main():
 	# loop over the new list and go getfile for each one greater than threshold
 	# cribbed shutil bits from cblr_cli.py
 	for file in (file for file in logcontent if file['size'] > 200000):
-		fullpath = path + "/" + file['filename']
+		fullpath = os.path.join(path, file['filename']) 
 		print "Downloading file %s now" % file['filename']
 		with open(fullpath, "wb") as fout:
-			shutil.copyfileobj(lrsess.get_raw_file(winlogpath + file['filename']), fout)
+			shutil.copyfileobj(lrsess.get_raw_file(os.path.join(winlogpath, file['filename'])), fout)
 
 if __name__ == "__main__":
     sys.exit(main())
