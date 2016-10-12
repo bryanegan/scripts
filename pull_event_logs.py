@@ -23,15 +23,13 @@ def main():
 
 	c=CbEnterpriseResponseAPI()
 	# If a sensor id is provided, preclude others, if IP pref over hostname
-	# Need to do like a if try block for args.(select)	
 	if args.sensorid:
 		live = c.select(Sensor, unique_id=args.sensorid)
 	elif args.ip:
 		query = "ip:" + args.ip
 		live = c.select(Sensor).where(query).one()
 	elif args.hostname:
-		uphost = str.upper(args.hostname)
-		query = "hostname:" + uphost
+		query = "hostname:" + args.hostname.upper()
 		live = c.select(Sensor).where(query).one()
 	else:
 		parser.print_usage()
@@ -49,7 +47,6 @@ def main():
 	# cribbed shutil bits from cblr_cli.py
 	for file in (file for file in logcontent if file['size'] > 200000):
 		fullpath = path + "/" + file['filename']
-		filepath = winlogpath + file['filename']
 		print "Downloading file %s now" % file['filename']
 		with open(fullpath, "wb") as fout:
 			shutil.copyfileobj(lrsess.get_raw_file(winlogpath + file['filename']), fout)
