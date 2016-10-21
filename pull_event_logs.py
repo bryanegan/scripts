@@ -7,10 +7,10 @@ from cbapi.example_helpers import build_cli_parser, disable_insecure_warnings
 
 def main():
 	parser = build_cli_parser("Download event logs from host")
-	parser.add_argument('-i', '--ip', action='store', dest='ip', default="", help="Select the Sensor based on its IP")
-	parser.add_argument('-n', '--hostname', action='store', dest='hostname', default="", help="Select the Sensor based on its hostname")
-	parser.add_argument('-s', '--sensorid', action='store', dest='sensorid', default="", help="Select the Sensor based on its sensor_id")
-	parser.add_argument('-p', '--path', action='store', dest='path', help='Specify a local path to store files', default="")
+	parser.add_argument('-i', '--ip', action='store', help="Select the Sensor based on its IP")
+	parser.add_argument('-n', '--hostname', action='store', help="Select the Sensor based on its hostname")
+	parser.add_argument('-s', '--sensorid', action='store', help="Select the Sensor based on its sensor_id")
+	parser.add_argument('-p', '--path', action='store', dest='path', help='Specify a local path to store files')
 
 	args = parser.parse_args()
 
