@@ -59,4 +59,4 @@ def main():
                 os.path.join(winlogpath, fileob['filename'])), fout)
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
